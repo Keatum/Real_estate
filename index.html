@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GreenKey AI — Your AI Real Estate Agent</title>
+  <meta name="description" content="Market, match, and manage property leads with an always-on AI real estate agent." />
+  <meta name="theme-color" content="#00ff88" />
+  <meta property="og:title" content="GreenKey AI — Your AI Real Estate Agent" />
+  <meta property="og:description" content="Market, match, and manage property leads with an always-on AI real estate agent." />
+  <!-- For preview, OG image and favicon are inline below as comments -->
+  
+  <!-- Inline CSS from styles.css for Canvas preview -->
+  <style>
+  /* ---- Theme ---- */
+  :root {
+    --bg: #0b0f10;         /* near-black */
+    --bg-alt: #0f1517;
+    --text: #e6f2ea;
+    --muted: #a7c9b8;
+    --accent: #00ff88;     /* neon green */
+    --accent-2: #4cffb3;   /* softer green for gradients */
+    --card: #0e1315;
+    --border: #1b262a;
+    --shadow: 0 10px 30px rgba(0,0,0,.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    color: var(--text);
+    background:
+      radial-gradient(1200px 600px at 80% -20%, rgba(0,255,136,.15), transparent 60%),
+      radial-gradient(800px 400px at 0% 20%, rgba(76,255,179,.1), transparent 50%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
+  }
+  /* Accessibility */
+  .skip-link { position: absolute; left: -9999px; }
+  .skip-link:focus { left: 1rem; top: 1rem; background: var(--accent); color: #001b0f; padding: .5rem .75rem; border-radius: .5rem; }
+  /* Layout helpers */
+  .container { width: min(1120px, 92vw); margin-inline: auto; padding: 1rem; }
+  .section { padding: 4rem 0; }
+  .section.alt { background: linear-gradient(180deg, rgba(0,255,136,.05), rgba(0,0,0,0) 60%); }
+  .section-title { font-size: clamp(1.6rem, 2.5vw + 1rem, 2.4rem); margin: 0 0 1.5rem 0; }
+  /* Header */
+  .site-header { position: sticky; top: 0; z-index: 50; background: rgba(11,15,16,.8); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+  .site-header .container { display: flex; align-items: center; gap: 1rem; }
+  .logo { display: flex; align-items: center; gap: .5rem; font-weight: 800; text-decoration: none; color: var(--text); }
+  .logo .accent { color: var(--accent); }
+  .logo svg { width: 28px; height: 28px; }
+  .nav-toggle { display: none; }
+  .nav-menu { display: flex; gap: 1rem; list-style: none; padding: 0; margin: 0; }
+  .nav-menu a { color: var(--muted); text-decoration: none; padding: .75rem .5rem; border-radius: .5rem; }
+  .nav-menu a:hover { color: var(--text); }
+  .site-header .btn-primary { margin-left: auto; }
+  /* Hero */
+  .hero { padding: 5rem 0 3rem 0; }
+  .hero .container { display: grid; grid-template-columns: 1.2fr .8fr; gap: 2rem; align-items: center; }
+  .hero-copy h1 { font-size: clamp(2rem, 2.8vw + 1rem, 3.2rem); line-height: 1.1; margin: 0 0 1rem 0; }
+  .lead { font-size: 1.1rem; color: var(--muted); }
+  .cta-row { display: flex; gap: .75rem; margin: 1rem 0 1rem; }
+  .badge-list { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; margin: 0; list-style: none; color: var(--muted); }
+  .badge-list li { border: 1px solid var(--border); border-radius: 999px; padding: .35rem .6rem; font-size: .9rem; background: rgba(0,0,0,.25); }
+  .hero-media { display: grid; gap: 1rem; }
+  .grid-card { background: linear-gradient(180deg, rgba(0,255,136,.07), rgba(0,0,0,0) 60%), var(--card); border: 1px solid var(--border); border-radius: 1rem; box-shadow: var(--shadow); padding: .75rem 1rem; }
+  .grid-card .card-header { font-weight: 600; color: var(--accent); margin-bottom: .35rem; }
+  .grid-card .card-body { color: var(--text); opacity: .9; }
+  /* Features */
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .feature { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 1rem; box-shadow: var(--shadow); }
+  .feature h3 { margin-top: 0; color: var(--accent); }
+  /* Steps */
+  .steps { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; padding: 0; counter-reset: step; }
+  .steps li { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 1rem; display: flex; align-items: center; gap: .75rem; }
+  .steps li span { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 999px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #002616; font-weight: 700; }
+  /* Contact form */
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 1rem; box-shadow: var(--shadow); }
+  .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .form-grid .full { grid-column: 1 / -1; }
+  label { display: grid; gap: .35rem; font-size: .95rem; color: var(--muted); }
+  input, textarea { width: 100%; padding: .75rem .85rem; border-radius: .6rem; border: 1px solid var(--border); background: #0a1011; color: var(--text); outline: none; }
+  input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,255,136,.15); }
+  .form-actions { display: flex; align-items: center; gap: 1rem; margin-top: .5rem; }
+  #form-status { color: var(--muted); font-size: .95rem; }
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; padding: .8rem 1rem; border-radius: .8rem; border: 1px solid var(--border); font-weight: 600; transition: transform .08s ease, box-shadow .2s ease, background .2s ease, color .2s ease; cursor: pointer; }
+  .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #001b0f; border-color: transparent; box-shadow: 0 6px 20px rgba(0,255,136,.2); }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 26px rgba(0,255,136,.28); }
+  .btn-ghost { background: rgba(0,0,0,.25); color: var(--text); }
+  .btn-ghost:hover { background: rgba(0,255,136,.08); border-color: var(--accent); }
+  /* Footer */
+  .site-footer { border-top: 1px solid var(--border); background: rgba(0,0,0,.35); padding: 2rem 0; }
+  .site-footer .container { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .site-footer a { color: var(--muted); text-decoration: none; }
+  .site-footer a[aria-disabled="true"] { opacity: .6; pointer-events: none; }
+  /* Responsive */
+  @media (max-width: 900px) {
+    .hero .container { grid-template-columns: 1fr; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .nav-toggle { display: inline-flex; margin-left: auto; }
+    .site-header .btn-primary { display: none; }
+    .nav-menu { position: absolute; right: 1rem; top: 64px; padding: .5rem; background: var(--card); border: 1px solid var(--border); border-radius: .75rem; display: none; flex-direction: column; }
+    .nav-menu.open { display: flex; }
+  }
+  @media (max-width: 560px) {
+    .features-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+  }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="/" aria-label="GreenKey AI">
+        <!-- Inline logo to avoid external asset -->
+        <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="g" x1="0" x2="1">
+              <stop offset="0" stop-color="#00ff88"/>
+              <stop offset=".8" stop-color="#4cffb3"/>
+            </linearGradient>
+          </defs>
+          <rect width="64" height="64" rx="12" fill="#0b0f10"/>
+          <path d="M20 44V20l12-4 12 4v24l-12 4-12-4z" fill="url(#g)" opacity=".9"/>
+        </svg>
+        <span>GreenKey<span class="accent">AI</span></span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
+        <ul id="nav-menu" class="nav-menu">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-primary" href="#contact">Request Demo</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-copy">
+          <h1>Meet your always-on <span class="accent">AI real estate agent</span>.</h1>
+          <p class="lead">Capture, qualify, and nurture leads 24/7. GreenKey AI handles initial outreach, schedules showings, and keeps prospects engaged—so your team can focus on closing.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#contact">Get a demo</a>
+            <a class="btn btn-ghost" href="#features">Explore features</a>
+          </div>
+          <ul class="badge-list" aria-label="Highlights">
+            <li>Instant lead response</li>
+            <li>Calendar + CRM friendly</li>
+            <li>Multi-language</li>
+          </ul>
+        </div>
+        <div class="hero-media" aria-hidden="true">
+          <div class="grid-card">
+            <div class="card-header">Live Lead Chat</div>
+            <div class="card-body">
+              <p>"Hi Alex! I found 3 homes in Seattle that match your budget. Want to schedule a tour?"</p>
+            </div>
+          </div>
+          <div class="grid-card">
+            <div class="card-header">Smart Matching</div>
+            <div class="card-body">
+              <p>Auto ranks listings by preferences, commute, and schools.</p>
+            </div>
+          </div>
+          <div class="grid-card">
+            <div class="card-header">Showings</div>
+            <div class="card-body">
+              <p>Connects to your calendar to book confirmed showings.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <h2 class="section-title">Built for <span class="accent">brokerages</span> & teams</h2>
+        <div class="features-grid">
+          <article class="feature">
+            <h3>Lead Capture</h3>
+            <p>Embedded website chat and SMS entry points convert visitors into active conversations.</p>
+          </article>
+          <article class="feature">
+            <h3>Qualification</h3>
+            <p>Asks the right questions to score readiness, budget, and timeline—then routes to agents.</p>
+          </article>
+          <article class="feature">
+            <h3>Follow-ups</h3>
+            <p>Automated nudges by email/text keep prospects warm and informed.</p>
+          </article>
+          <article class="feature">
+            <h3>Scheduling</h3>
+            <p>Checks availability and confirms tours without back-and-forth.</p>
+          </article>
+          <article class="feature">
+            <h3>Integrations</h3>
+            <p>Plays nicely with your calendar and CRM (placeholder—wire up later).</p>
+          </article>
+          <article class="feature">
+            <h3>Analytics</h3>
+            <p>Pipeline visibility: response times, conversion rates, and agent handoffs.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section alt">
+      <div class="container">
+        <h2 class="section-title">How it <span class="accent">works</span></h2>
+        <ol class="steps">
+          <li><span>1</span> Add GreenKey AI to your site.</li>
+          <li><span>2</span> Connect calendar & CRM.</li>
+          <li><span>3</span> Customize prompts & handoff rules.</li>
+          <li><span>4</span> Launch and watch leads convert.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h2 class="section-title">Request a <span class="accent">demo</span></h2>
+        <form id="contact-form" class="card" novalidate>
+          <div class="form-grid">
+            <label>
+              <span>Name</span>
+              <input type="text" name="name" required />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" required />
+            </label>
+            <label class="full">
+              <span>Company</span>
+              <input type="text" name="company" />
+            </label>
+            <label class="full">
+              <span>What are you hoping to solve?</span>
+              <textarea name="message" rows="4"></textarea>
+            </label>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <p id="form-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> GreenKey AI. All rights reserved.</p>
+      <nav aria-label="Legal">
+        <a href="#" aria-disabled="true">Privacy</a>
+        <a href="#" aria-disabled="true">Terms</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Inline JS from script.js for Canvas preview -->
+  <script>
+  (function () {
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    if (navToggle && navMenu) {
+      navToggle.addEventListener('click', () => {
+        const open = navMenu.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', String(open));
+      });
+    }
+
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+    if (form && status) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(form).entries());
+        console.log('Demo request:', data); // placeholder for your backend
+        status.textContent = 'Thanks! We will be in touch shortly.';
+        form.reset();
+      });
+    }
+  })();
+  </script>
+
+  <!--
+  =====================
+  Additional project files (for completeness)
+  =====================
+
+  File: 404.html
+  ---------------------
+  <!doctype html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Page Not Found — GreenKey AI</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="section">
+      <div class="container">
+        <h1>404</h1>
+        <p>We couldn't find that page.</p>
+        <p><a class="btn btn-primary" href="/">Back to home</a></p>
+      </div>
+    </main>
+  </body>
+  </html>
+
+  File: assets/favicon.svg
+  ---------------------
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+    <defs>
+      <linearGradient id="g" x1="0" x2="1">
+        <stop offset="0" stop-color="#00ff88"/>
+        <stop offset=".8" stop-color="#4cffb3"/>
+      </linearGradient>
+    </defs>
+    <rect width="64" height="64" rx="12" fill="#0b0f10"/>
+    <path d="M20 44V20l12-4 12 4v24l-12 4-12-4z" fill="url(#g)" opacity=".9"/>
+    <path d="M26 28h12v2H26zm0 6h12v2H26zm0 6h8v2h-8z" fill="#002616" opacity=".9"/>
+  </svg>
+
+  File: assets/og.png (placeholder)
+  ---------------------
+  (1200×630 image placeholder for social sharing)
+  -->
+</body>
+</html>
